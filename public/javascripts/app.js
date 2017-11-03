@@ -23,7 +23,7 @@ function mainCtrl ($scope, commentTracker, $http) {
     $scope.addComment = function () {
         var formData = {text: $scope.commentText};
         var commentURL = 'comments';
-
+        $scope.commentText = '';
         $http({
             url: commentURL,
             method: "POST",
