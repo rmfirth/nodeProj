@@ -1,70 +1,43 @@
-angular.module('News', ['ui.router'])
+var app = window.angular.module('app', []);
 
+app.factory('commentTracker', commentTracker);
+app.controller('mainCtrl', mainCtrl);
 
-    .config([
-        '$stateProvider',
-        '$urlRouterProvider',
-        function($stateProvider, $urlRouterProvider) {
-            $stateProvider
-                .state('home', {
-                    url: '/home',
-                    templateUrl: '/home.html',
-                    controller: 'MainCtrl'
+function commentTracker($http) {
+    var REQUEST_ROOT = 'comments';
+    return {
+        get: function() {
+            return $http
+                .get(REQUEST_ROOT)
+                .then(function (resp) {
+                    return resp.data;
                 })
-                .state('posts', {
-                    url: '/posts/{id}',
-                    templateUrl: '/posts.html',
-                    controller: 'PostCtrl'
-                });
-            $urlRouterProvider.otherwise('home');
-        }])
-
-    .factory('postFactory', [function(){
-        var o = {
-            posts: []
-        };
-        return o;
-    }])
-
-
-
-    .controller('MainCtrl', [
-        '$scope',
-        'postFactory',
-        function($scope, postFactory){
-            $scope.test = 'Hello world!';
-            $scope.posts = postFactory.posts;
-
-            $scope.addPost = function() {
-                $scope.posts.push({
-                    title: $scope.formContent,
-                    upvotes: 0,
-                    comments: []
-                });
-                $scope.formContent='';
-            };
-
-            $scope.incrementUpvotes = function(post) {
-                post.upvotes += 1;
-            };
         }
-    ])
+    }
+}
 
-    .controller('PostCtrl', [
-        '$scope',
-        '$stateParams',
-        'postFactory',
-        function($scope, $stateParams, postFactory){
-            $scope.post = postFactory.posts[$stateParams.id];
-            $scope.addComment = function(){
-                if($scope.body === '') { return; }
-                $scope.post.comments.push({
-                    body: $scope.body,
-                    upvotes: 0
-                });
-                $scope.body = '';
-            };
-            $scope.incrementUpvotes = function(comment){
-                comment.upvotes += 1;
-            };
-        }]);
+function mainCtrl ($scope, commentTracker, $http) {
+    $scope.comments = [];
+
+
+    $scope.addComment = function () {
+        var formData = {text: $scope.commentText};
+        var commentURL = 'comments';
+
+        $http({
+            url: commentURL,
+            method: "POST",
+            data: formData
+        }).success(function(data, status, headers, config) {
+            console.log("Post worked");
+            $scope.comments = data;
+        }).error(function(data, status, headers, config) {
+            console.log("post failed");
+        });
+    };
+
+    commentTracker.get()
+        .then(function(data) {
+            $scope.comments = data;
+    });
+}
