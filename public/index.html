@@ -9,21 +9,34 @@
 
 </head>
 <body ng-app="app" ng-controller="mainCtrl">
+<div class="title">
+<h1>The Pressure Is On...</h1>
+<h2>#controversialTopics</h2>
+</div>
+<div class="descriptor">
+    What color is the dress???
+</div>
 
+<div class="image-display">
+    <img src="https://upload.wikimedia.org/wikipedia/en/a/a8/The_Dress_%28viral_phenomenon%29.png">
+</div>
 
-
-<h2>ADD a comment</h2>
-<form id="newComment" ng-submit="addComment()">
-    Your UserID: <input type="text" ng-model="userID" placeholder="myUserID" required>
-    Your Comment: <input type="text" ng-model="commentText" required placeholder="Enter a comment here"><br>
-    <input type ="submit" value="Post">
-</form>
 <section class="comments-class">
+    <div class="add-comment">
+<h2>Add a comment</h2>
+<form id="newComment" ng-submit="addComment()">
+    Your UserID:<br> <input type="text" ng-model="userID" placeholder="myUserID" required><br>
+    Your Comment:<br> <textarea id="post-comment" ng-model="commentText" required placeholder="Enter a comment here"></textarea><br>
+    <button type ="submit" class="btn btn-primary">Post</button>
+</form>
+    </div>
+
+
     <h2>Comments</h2>
     <ul>
         <li ng-repeat="c in comments">
             <h2>{{c.userID}}</h2>
-            <p>{{c.text}}</p>
+            <p>{{c.uid}}</p>
 
         </li>
 

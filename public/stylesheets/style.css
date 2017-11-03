@@ -1,14 +1,62 @@
 body {
-  padding: 50px;
+  padding: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: black;
   color: white;
 }
 
+.title {
+  text-align: center;
+}
 a {
   color: #00B7FF;
 }
 
+.image-display {
+  display: inline-block;
+  margin: 5px 38%;
+}
+.descriptor {
+  background-color: darkslategrey;
+  color: white;
+  display: inline-block;
+  box-sizing: border-box;
+  width: 30%;
+  height: 100px;
+  margin: 5px 35%;
+  text-align: center;
+  padding: 40px 0;
+  font-size: large;
+  border-radius: 5px;
+}
+
 .comments-class li {
   list-style: none;
+}
+
+.add-comment form {
+  color:black;
+}
+
+.add-comment form input, .add-comment form textarea {
+  margin: 5px 0;
+}
+
+.add-comment {
+  padding: 20px;
+  margin: 5px;
+  background-color: white;
+  box-shadow: 0 0 5px 5px inset;
+  color: black;
+}
+
+#post-comment {
+  width: 80%;
+  height: 40px;
+}
+
+
+
+.comments-class {
+  margin: 10px;
 }
