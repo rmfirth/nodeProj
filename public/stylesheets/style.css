@@ -13,8 +13,8 @@ a {
 }
 
 .image-display {
-  display: inline-block;
-  margin: 5px 38%;
+  display: block;
+  margin: auto;
 }
 .descriptor {
   background-color: darkslategrey;
