@@ -5,24 +5,30 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.19/angular.min.js"></script>
     <script src="javascripts/app.js"></script>
+    <link rel="stylesheet" href="stylesheets/style.css">
 
 </head>
 <body ng-app="app" ng-controller="mainCtrl">
 
 
 
-<h2>COMMENTS</h2>
-<ul>
-    <li ng-repeat="c in comments">
-        <h1>{{c.text}}</h1>
-    </li>
-
-</ul>
 <h2>ADD a comment</h2>
 <form id="newComment" ng-submit="addComment()">
-    Your Comment: <input type="text" ng-model="commentText" placeholder="Enter a comment here"><br>
+    Your UserID: <input type="text" ng-model="userID" placeholder="myUserID" required>
+    Your Comment: <input type="text" ng-model="commentText" required placeholder="Enter a comment here"><br>
     <input type ="submit" value="Post">
 </form>
+<section class="comments-class">
+    <h2>Comments</h2>
+    <ul>
+        <li ng-repeat="c in comments">
+            <h2>{{c.userID}}</h2>
+            <p>{{c.text}}</p>
+
+        </li>
+
+    </ul>
+</section>
 
 
 

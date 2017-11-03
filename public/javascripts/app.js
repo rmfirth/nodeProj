@@ -21,7 +21,10 @@ function mainCtrl ($scope, commentTracker, $http) {
 
 
     $scope.addComment = function () {
-        var formData = {text: $scope.commentText};
+        var formData = {
+            text: $scope.commentText,
+            uid: $scope.userID
+        };
         var commentURL = 'comments';
         $scope.commentText = '';
         $http({
