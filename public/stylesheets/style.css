@@ -32,6 +32,12 @@ a {
 
 .comments-class li {
   list-style: none;
+  display:block;
+  margin:5px;
+  background-color: darkslategrey;
+  border-radius: 5px;
+  color:white;
+  padding: 10px
 }
 
 .add-comment form {
