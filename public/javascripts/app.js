@@ -27,6 +27,7 @@ function mainCtrl ($scope, commentTracker, $http) {
         };
         var commentURL = 'comments';
         $scope.commentText = '';
+        $scope.userID = '';
         $http({
             url: commentURL,
             method: "POST",
